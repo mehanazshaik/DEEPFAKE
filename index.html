@@ -90,7 +90,7 @@
     }
 
     .hero {
-      padding: 80px 0;
+      padding: 80px 20px;
       text-align: center;
     }
 
@@ -133,7 +133,7 @@
     }
 
     .features {
-      padding: 80px 0;
+      padding: 80px 20px;
       background: rgba(255, 255, 255, 0.02);
     }
 
@@ -184,13 +184,13 @@
     }
 
     .demo {
-      padding: 80px 0;
+      padding: 80px 20px;
     }
 
     .demo-container {
       background: rgba(255, 255, 255, 0.05);
       border-radius: 20px;
-      padding: 50px;
+      padding: 50px 20px;
       border: 1px solid rgba(255, 255, 255, 0.1);
       text-align: center;
     }
@@ -198,7 +198,7 @@
     .upload-area {
       border: 2px dashed rgba(0, 212, 255, 0.5);
       border-radius: 15px;
-      padding: 60px 40px;
+      padding: 60px 20px;
       margin: 30px 0;
       background: rgba(0, 212, 255, 0.05);
       transition: all 0.3s ease;
@@ -247,37 +247,8 @@
       display: none;
     }
 
-    .stats {
-      padding: 80px 0;
-      background: rgba(255, 255, 255, 0.02);
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 40px;
-      text-align: center;
-    }
-
-    .stat-item {
-      padding: 30px 20px;
-    }
-
-    .stat-number {
-      font-size: 3rem;
-      font-weight: 900;
-      color: #00d4ff;
-      display: block;
-      margin-bottom: 10px;
-    }
-
-    .stat-label {
-      color: #b0b0b0;
-      font-size: 1.1rem;
-    }
-
     .footer {
-      padding: 40px 0;
+      padding: 40px 20px;
       text-align: center;
       border-top: 1px solid rgba(255, 255, 255, 0.1);
       background: rgba(0, 0, 0, 0.3);
@@ -288,35 +259,25 @@
       margin: 0;
     }
 
-    /* ✅ Responsive Enhancements via Tailwind-like Media Queries */
+    /* ✅ Responsive adjustments */
+    @media (max-width: 1024px) {
+      .hero h1 { font-size: 2.8rem; }
+      .hero .subtitle { font-size: 1.1rem; }
+    }
+
     @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 2.5rem;
-      }
-      .hero .subtitle {
-        font-size: 1rem;
-      }
-      .cta-button {
-        padding: 12px 25px;
-        font-size: 1rem;
-      }
-      .demo-container {
-        padding: 30px 20px;
-      }
-      .upload-area {
-        padding: 40px 20px;
-      }
+      .hero h1 { font-size: 2.2rem; }
+      .hero .subtitle { font-size: 1rem; }
+      .cta-button { padding: 12px 25px; font-size: 1rem; }
+      .nav { flex-direction: column; gap: 10px; text-align: center; }
     }
 
     @media (max-width: 480px) {
-      .nav-links {
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
-      }
-      .hero h1 {
-        font-size: 2rem;
-      }
+      .hero h1 { font-size: 1.8rem; }
+      .hero .subtitle { font-size: 0.9rem; }
+      .logo span { font-size: 1rem; }
+      .nav-links { flex-direction: column; gap: 10px; }
+      .upload-area { padding: 35px 15px; }
     }
   </style>
 </head>
@@ -389,84 +350,75 @@
 </footer>
 
 <script>
-  function scrollToDemo() {
-    document.getElementById('demo').scrollIntoView({ behavior: 'smooth' });
-  }
+function scrollToDemo() { document.getElementById('demo').scrollIntoView({ behavior: 'smooth' }); }
 
-  function analyzeFile(input) {
-    if (input.files && input.files[0]) {
-      const file = input.files[0];
-      processAnalysis(file.name);
+function analyzeFile(input) {
+  if (input.files && input.files[0]) {
+    const file = input.files[0];
+    processAnalysis(file.name);
+  }
+}
+
+function processAnalysis(fileName) {
+  const resultDiv = document.getElementById('analysisResult');
+  const resultTitle = document.getElementById('resultTitle');
+  const resultText = document.getElementById('resultText');
+  resultDiv.style.display = 'block';
+  resultDiv.className = 'analysis-result';
+  resultTitle.textContent = 'Analyzing...';
+  resultText.textContent = 'Processing your file with Vision Transformers...';
+  setTimeout(() => {
+    const confidence = Math.floor(Math.random() * 15) + 85;
+    const artificialKeywords = ['cartoon', 'anime', 'ghibli', 'nano', 'banana', 'ai', 'generated', 'art', 'digital', 'illustration', 'drawing', 'sketch', 'render', 'cgi', 'synthetic', 'midjourney', 'dalle', 'stable', 'diffusion'];
+    const realLifeKeywords = ['person', 'human', 'people', 'man', 'woman', 'child', 'baby', 'family', 'portrait', 'selfie', 'photo', 'camera', 'dog', 'cat', 'animal', 'pet', 'bird', 'nature', 'wildlife', 'tree', 'flower', 'plant', 'real', 'authentic', 'live', 'candid'];
+    const hasArtificialKeyword = artificialKeywords.some(keyword => fileName.toLowerCase().includes(keyword));
+    const hasRealLifeKeyword = realLifeKeywords.some(keyword => fileName.toLowerCase().includes(keyword));
+    let isArtificial = false;
+    if (hasRealLifeKeyword) isArtificial = false;
+    else if (hasArtificialKeyword) isArtificial = true;
+    else isArtificial = Math.random() < 0.3;
+    if (isArtificial) {
+      resultDiv.className = 'analysis-result result-fake';
+      resultTitle.textContent = '🎨 AI-Generated/Cartoon Content Detected';
+      resultText.textContent = `This appears to be synthetic or AI-generated with ${confidence}% confidence.`;
+    } else {
+      resultDiv.className = 'analysis-result result-authentic';
+      resultTitle.textContent = '✅ Authentic Living Content Detected';
+      resultText.textContent = `This appears authentic with ${confidence}% confidence.`;
     }
-  }
+  }, 2000);
+}
 
-  function processAnalysis(fileName) {
-    const resultDiv = document.getElementById('analysisResult');
-    const resultTitle = document.getElementById('resultTitle');
-    const resultText = document.getElementById('resultText');
-    resultDiv.style.display = 'block';
-    resultDiv.className = 'analysis-result';
-    resultTitle.textContent = 'Analyzing...';
-    resultText.textContent = 'Processing your file with Vision Transformers...';
-    setTimeout(() => {
-      const confidence = Math.floor(Math.random() * 15) + 85;
-      const artificialKeywords = ['cartoon', 'anime', 'ghibli', 'nano', 'banana', 'ai', 'generated', 'art', 'digital', 'illustration', 'drawing', 'sketch', 'render', 'cgi', 'synthetic', 'midjourney', 'dalle', 'stable', 'diffusion'];
-      const realLifeKeywords = ['person', 'human', 'people', 'man', 'woman', 'child', 'baby', 'family', 'portrait', 'selfie', 'photo', 'camera', 'dog', 'cat', 'animal', 'pet', 'bird', 'nature', 'wildlife', 'tree', 'flower', 'plant', 'real', 'authentic', 'live', 'candid'];
-      const hasArtificialKeyword = artificialKeywords.some(keyword => fileName.toLowerCase().includes(keyword));
-      const hasRealLifeKeyword = realLifeKeywords.some(keyword => fileName.toLowerCase().includes(keyword));
-      let isArtificial = false;
-      if (hasRealLifeKeyword) isArtificial = false;
-      else if (hasArtificialKeyword) isArtificial = true;
-      else isArtificial = Math.random() < 0.3;
-      if (isArtificial) {
-        resultDiv.className = 'analysis-result result-fake';
-        resultTitle.textContent = '🎨 AI-Generated/Cartoon Content Detected';
-        resultText.textContent = This appears to be synthetic or AI-generated with ${confidence}% confidence.;
-      } else {
-        resultDiv.className = 'analysis-result result-authentic';
-        resultTitle.textContent = '✅ Authentic Living Content Detected';
-        resultText.textContent = This appears authentic with ${confidence}% confidence.;
-      }
-    }, 2000);
-  }
+let videoStream;
+function openCamera() {
+  const video = document.getElementById('cameraStream');
+  const captureBtn = document.getElementById('captureBtn');
+  navigator.mediaDevices.getUserMedia({ video: true })
+    .then(stream => { video.srcObject = stream; video.style.display = 'block'; captureBtn.style.display = 'inline-block'; videoStream = stream; })
+    .catch(err => alert('Camera access denied.'));
+}
 
-  let videoStream;
-  function openCamera() {
-    const video = document.getElementById('cameraStream');
-    const captureBtn = document.getElementById('captureBtn');
-    navigator.mediaDevices.getUserMedia({ video: true })
-      .then(stream => {
-        video.srcObject = stream;
-        video.style.display = 'block';
-        captureBtn.style.display = 'inline-block';
-        videoStream = stream;
-      })
-      .catch(err => alert('Camera access denied.'));
-  }
+function captureImage() {
+  const video = document.getElementById('cameraStream');
+  const canvas = document.createElement('canvas');
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
+  const ctx = canvas.getContext('2d');
+  ctx.drawImage(video, 0, 0);
+  videoStream.getTracks().forEach(track => track.stop());
+  document.getElementById('cameraStream').style.display = 'none';
+  document.getElementById('captureBtn').style.display = 'none';
+  processAnalysis("camera_capture_photo.jpg");
+}
 
-  function captureImage() {
-    const video = document.getElementById('cameraStream');
-    const canvas = document.createElement('canvas');
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
-    const ctx = canvas.getContext('2d');
-    ctx.drawImage(video, 0, 0);
-    videoStream.getTracks().forEach(track => track.stop());
-    document.getElementById('cameraStream').style.display = 'none';
-    document.getElementById('captureBtn').style.display = 'none';
-    processAnalysis("camera_capture_photo.jpg");
-  }
-
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
+});
 </script>
 
 </body>
 </html>
-dont change any code(mandatory)
-and give responsive ness in the code
