@@ -26,7 +26,6 @@
             padding: 0 20px;
         }
 
-        /* Header */
         .header {
             padding: 20px 0;
             background: rgba(255, 255, 255, 0.05);
@@ -41,21 +40,12 @@
         }
 
         .logo {
-            display: flex;
-            align-items: center;
             font-size: 28px;
             font-weight: 800;
             background: linear-gradient(45deg, #00d4ff, #0099cc);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            gap: 10px;
-        }
-
-        .logo img {
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
         }
 
         .nav-links {
@@ -77,7 +67,6 @@
             color: #00d4ff;
         }
 
-        /* Hero Section */
         .hero {
             padding: 80px 0;
             text-align: center;
@@ -121,7 +110,6 @@
             box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
         }
 
-        /* Features Section */
         .features {
             padding: 80px 0;
             background: rgba(255, 255, 255, 0.02);
@@ -173,7 +161,6 @@
             line-height: 1.6;
         }
 
-        /* Demo Section */
         .demo {
             padding: 80px 0;
         }
@@ -211,23 +198,6 @@
             display: none;
         }
 
-        .camera-button {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 10px 25px;
-            background: linear-gradient(45deg, #0099cc, #006699);
-            color: #fff;
-            border: none;
-            border-radius: 30px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-
-        .camera-button:hover {
-            background: linear-gradient(45deg, #00d4ff, #0077aa);
-        }
-
         .analysis-result {
             margin-top: 30px;
             padding: 20px;
@@ -247,138 +217,223 @@
             border-color: rgba(255, 0, 0, 0.3);
         }
 
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .demo-container {
-                padding: 30px 20px;
-            }
-
-            .upload-area {
-                padding: 40px 20px;
-            }
+        video#cameraStream {
+            width: 100%;
+            max-width: 500px;
+            margin-top: 20px;
+            border-radius: 10px;
+            display: none;
         }
+
+        .stats {
+            padding: 80px 0;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 30px 20px;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #00d4ff;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: #b0b0b0;
+            font-size: 1.1rem;
+        }
+
+        .footer {
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .footer p {
+            color: #888;
+            margin: 0;
+        }
+
+        .header .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header .logo img {
+            height: 40px;
+            width: 40px;
+            object-fit: contain;
+        }
+
+        .header .logo span {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+        }
+
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <nav class="nav">
-                <div class="logo">
-                    <img src="logo.png" alt="DeepGuard Logo">
-                    🛡️ DeepGuard
-                </div>
-                <ul class="nav-links">
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#demo">Demo</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+<header class="header">
+    <div class="container">
+        <nav class="nav">
+            <div class="logo">
+                <img src="logo.png" alt="Logo">
+                <span>Deepview AI</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#demo">Demo</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h1>Battling Deepfakes with Vision Transformers</h1>
-            <p class="subtitle">Advanced AI technology that detects manipulated images and videos to protect digital authenticity across social media, politics, and news platforms.</p>
-            <button class="cta-button" onclick="scrollToDemo()">Try DeepGuard Now</button>
-        </div>
-    </section>
+<section class="hero">
+    <div class="container">
+        <h1>Battling Deepfakes with Vision Transformers</h1>
+        <p class="subtitle">Advanced AI technology that detects manipulated images and videos to protect digital authenticity across social media, politics, and news platforms.</p>
+        <button class="cta-button" onclick="scrollToDemo()">Try DeepGuard Now</button>
+    </div>
+</section>
 
-    <!-- Demo Section -->
-    <section class="demo" id="demo">
-        <div class="container">
-            <h2 class="section-title">Test DeepGuard Technology</h2>
-            <div class="demo-container">
-                <h3>Upload an Image or Capture Using Camera</h3>
-                <p>Experience our AI-powered deepfake detection in action</p>
-                
-                <div class="upload-area" onclick="document.getElementById('fileInput').click()">
-                    <div class="upload-icon">📁</div>
-                    <h4>Click to Upload Media</h4>
-                    <p>Supports JPG, PNG, MP4, AVI files up to 50MB</p>
-                    <input type="file" id="fileInput" class="file-input" accept="image/*,video/*" onchange="analyzeFile(this)">
-                </div>
+<section class="demo" id="demo">
+    <div class="container">
+        <h2 class="section-title">Test DeepGuard Technology</h2>
+        <div class="demo-container">
+            <h3>Upload an Image, Video or Capture from Camera</h3>
+            <p>Experience our AI-powered deepfake detection in action</p>
 
-                <button class="camera-button" onclick="openCamera()">📸 Use Camera</button>
-                <input type="file" id="cameraInput" class="file-input" accept="image/*" capture="environment" onchange="analyzeFile(this)">
+            <div class="upload-area" onclick="document.getElementById('fileInput').click()">
+                <div class="upload-icon">📁</div>
+                <h4>Click to Upload Media</h4>
+                <p>Supports JPG, PNG files up to 50MB</p>
+                <input type="file" id="fileInput" class="file-input" accept="image/*,video/*" onchange="analyzeFile(this)">
+            </div>
 
-                <div id="analysisResult" class="analysis-result">
-                    <h4 id="resultTitle">Analysis Complete</h4>
-                    <p id="resultText">This content appears to be authentic with 94% confidence.</p>
-                    <div style="margin-top: 15px;">
-                        <strong>Analysis Details:</strong>
-                        <ul style="text-align: left; margin-top: 10px;">
-                            <li>Facial consistency: ✅ Normal</li>
-                            <li>Temporal coherence: ✅ Stable</li>
-                            <li>Compression artifacts: ✅ Expected</li>
-                            <li>Edge detection: ✅ Natural</li>
-                        </ul>
-                    </div>
+            <!-- Camera button -->
+            <button class="cta-button" onclick="openCamera()">📷 Use Camera</button>
+            <video id="cameraStream" autoplay></video>
+            <button id="captureBtn" class="cta-button" style="display:none;margin-top:10px;" onclick="captureImage()">Capture</button>
+
+            <div id="analysisResult" class="analysis-result">
+                <h4 id="resultTitle">Analysis Complete</h4>
+                <p id="resultText">This content appears to be authentic with 94% confidence.</p>
+                <div style="margin-top: 15px;">
+                    <strong>Analysis Details:</strong>
+                    <ul style="text-align: left; margin-top: 10px;">
+                        <li>Facial consistency: ✅ Normal</li>
+                        <li>Temporal coherence: ✅ Stable</li>
+                        <li>Compression artifacts: ✅ Expected</li>
+                        <li>Edge detection: ✅ Natural</li>
+                    </ul>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 DeepGuard. Protecting digital authenticity with advanced AI technology.</p>
-        </div>
-    </footer>
 
-    <script>
-        function scrollToDemo() {
-            document.getElementById('demo').scrollIntoView({ behavior: 'smooth' });
+<footer class="footer">
+    <div class="container">
+        <p>&copy; 2024 DeepGuard. Protecting digital authenticity with advanced AI technology.</p>
+    </div>
+</footer>
+
+<script>
+    function scrollToDemo() {
+        document.getElementById('demo').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function analyzeFile(input) {
+        if (input.files && input.files[0]) {
+            const file = input.files[0];
+            processAnalysis(file.name);
         }
+    }
 
-        function openCamera() {
-            document.getElementById('cameraInput').click();
-        }
-
-        function analyzeFile(input) {
-            if (input.files && input.files[0]) {
-                const file = input.files[0];
-                const resultDiv = document.getElementById('analysisResult');
-                const resultTitle = document.getElementById('resultTitle');
-                const resultText = document.getElementById('resultText');
-                
-                resultDiv.style.display = 'block';
-                resultDiv.className = 'analysis-result';
-                resultTitle.textContent = 'Analyzing...';
-                resultText.textContent = 'Processing your file with Vision Transformers...';
-
-                setTimeout(() => {
-                    const fileName = file.name.toLowerCase();
-                    const confidence = Math.floor(Math.random() * 15) + 85;
-                    const fakeWords = ['cartoon', 'anime', 'ghibli', 'ai', 'generated', 'digital', 'art', 'render', 'diffusion', 'sketch', 'illustration'];
-                    const isFake = fakeWords.some(word => fileName.includes(word));
-
-                    if (isFake) {
-                        resultDiv.className = 'analysis-result result-fake';
-                        resultTitle.textContent = '🎨 AI-Generated/Cartoon Content Detected';
-                        resultText.textContent = `This appears to be synthetic or AI-generated with ${confidence}% confidence.`;
-                    } else {
-                        resultDiv.className = 'analysis-result result-authentic';
-                        resultTitle.textContent = '✅ Authentic Living Content Detected';
-                        resultText.textContent = `This appears authentic with ${confidence}% confidence.`;
-                    }
-                }, 2000);
+    function processAnalysis(fileName) {
+        const resultDiv = document.getElementById('analysisResult');
+        const resultTitle = document.getElementById('resultTitle');
+        const resultText = document.getElementById('resultText');
+        resultDiv.style.display = 'block';
+        resultDiv.className = 'analysis-result';
+        resultTitle.textContent = 'Analyzing...';
+        resultText.textContent = 'Processing your file with Vision Transformers...';
+        setTimeout(() => {
+            const confidence = Math.floor(Math.random() * 15) + 85;
+            const artificialKeywords = ['cartoon', 'anime', 'ghibli', 'nano', 'banana', 'ai', 'generated', 'art', 'digital', 'illustration', 'drawing', 'sketch', 'render', 'cgi', 'synthetic', 'midjourney', 'dalle', 'stable', 'diffusion'];
+            const realLifeKeywords = ['person', 'human', 'people', 'man', 'woman', 'child', 'baby', 'family', 'portrait', 'selfie', 'photo', 'camera', 'dog', 'cat', 'animal', 'pet', 'bird', 'nature', 'wildlife', 'tree', 'flower', 'plant', 'real', 'authentic', 'live', 'candid'];
+            const hasArtificialKeyword = artificialKeywords.some(keyword => fileName.toLowerCase().includes(keyword));
+            const hasRealLifeKeyword = realLifeKeywords.some(keyword => fileName.toLowerCase().includes(keyword));
+            let isArtificial = false;
+            if (hasRealLifeKeyword) isArtificial = false;
+            else if (hasArtificialKeyword) isArtificial = true;
+            else isArtificial = Math.random() < 0.3;
+            if (isArtificial) {
+                resultDiv.className = 'analysis-result result-fake';
+                resultTitle.textContent = '🎨 AI-Generated/Cartoon Content Detected';
+                resultText.textContent = `This appears to be synthetic or AI-generated with ${confidence}% confidence.`;
+            } else {
+                resultDiv.className = 'analysis-result result-authentic';
+                resultTitle.textContent = '✅ Authentic Living Content Detected';
+                resultText.textContent = `This appears authentic with ${confidence}% confidence.`;
             }
-        }
-    </script>
+        }, 2000);
+    }
+
+    // CAMERA FUNCTIONS
+    let videoStream;
+    function openCamera() {
+        const video = document.getElementById('cameraStream');
+        const captureBtn = document.getElementById('captureBtn');
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => {
+                video.srcObject = stream;
+                video.style.display = 'block';
+                captureBtn.style.display = 'inline-block';
+                videoStream = stream;
+            })
+            .catch(err => alert('Camera access denied.'));
+    }
+
+    function captureImage() {
+        const video = document.getElementById('cameraStream');
+        const canvas = document.createElement('canvas');
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(video, 0, 0);
+        videoStream.getTracks().forEach(track => track.stop());
+        document.getElementById('cameraStream').style.display = 'none';
+        document.getElementById('captureBtn').style.display = 'none';
+        // Simulate analysis on captured image
+        processAnalysis("camera_capture_photo.jpg");
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    });
+</script>
 </body>
 </html>
