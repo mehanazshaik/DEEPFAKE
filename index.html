@@ -288,41 +288,48 @@
       margin: 0;
     }
 
-    /* ✅ Responsive Enhancements */
-    @media (max-width: 1024px) {
-      .nav-links {
-        gap: 20px;
+    /* ✅ Responsive Enhancements via Tailwind-like Media Queries */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      .hero .subtitle {
+        font-size: 1rem;
+      }
+      .cta-button {
+        padding: 12px 25px;
+        font-size: 1rem;
+      }
+      .demo-container {
+        padding: 30px 20px;
+      }
+      .upload-area {
+        padding: 40px 20px;
       }
     }
 
-    @media (max-width: 768px) {
-      .nav { flex-direction: column; gap: 10px; text-align: center; }
-      .hero h1 { font-size: 2.5rem; }
-      .hero .subtitle { font-size: 1rem; }
-      .cta-button { padding: 12px 25px; font-size: 1rem; }
-      .demo-container { padding: 30px 20px; }
-      .upload-area { padding: 40px 20px; }
-      .section-title { font-size: 2rem; }
-    }
-
     @media (max-width: 480px) {
-      .logo span { font-size: 1.1rem; }
-      .hero h1 { font-size: 1.8rem; }
-      .hero .subtitle { font-size: 0.95rem; }
-      .nav-links { flex-direction: column; align-items: center; gap: 12px; }
+      .nav-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+      }
+      .hero h1 {
+        font-size: 2rem;
+      }
     }
   </style>
 </head>
+<body>
 
-<body class="min-h-screen flex flex-col">
-<header class="header w-full">
+<header class="header">
   <div class="container">
     <nav class="nav">
       <div class="logo">
         <img src="logo.png" alt="Logo">
         <span>Deepview AI</span>
       </div>
-      <ul class="nav-links flex flex-wrap justify-center lg:justify-end">
+      <ul class="nav-links">
         <li><a href="#features">Features</a></li>
         <li><a href="#demo">Demo</a></li>
         <li><a href="#about">About</a></li>
@@ -332,7 +339,7 @@
   </div>
 </header>
 
-<section class="hero text-center px-4 sm:px-6 lg:px-8">
+<section class="hero">
   <div class="container">
     <h1>Battling Deepfakes with Vision Transformers</h1>
     <p class="subtitle">Advanced AI technology that detects manipulated images and videos to protect digital authenticity across social media, politics, and news platforms.</p>
@@ -340,7 +347,7 @@
   </div>
 </section>
 
-<section class="demo px-4 sm:px-6 lg:px-8" id="demo">
+<section class="demo" id="demo">
   <div class="container">
     <h2 class="section-title">Test DeepGuard Technology</h2>
     <div class="demo-container">
@@ -358,10 +365,10 @@
       <video id="cameraStream" autoplay></video>
       <button id="captureBtn" class="cta-button mt-3 hidden" onclick="captureImage()">Capture</button>
 
-      <div id="analysisResult" class="analysis-result mt-4 text-left mx-auto max-w-lg">
+      <div id="analysisResult" class="analysis-result">
         <h4 id="resultTitle">Analysis Complete</h4>
         <p id="resultText">This content appears to be authentic with 94% confidence.</p>
-        <div class="mt-4">
+        <div class="mt-4 text-left">
           <strong>Analysis Details:</strong>
           <ul class="list-disc pl-5 mt-2">
             <li>Facial consistency: ✅ Normal</li>
@@ -375,7 +382,7 @@
   </div>
 </section>
 
-<footer class="footer mt-auto">
+<footer class="footer">
   <div class="container">
     <p>&copy; 2024 DeepGuard. Protecting digital authenticity with advanced AI technology.</p>
   </div>
@@ -403,8 +410,8 @@
     resultText.textContent = 'Processing your file with Vision Transformers...';
     setTimeout(() => {
       const confidence = Math.floor(Math.random() * 15) + 85;
-      const artificialKeywords = ['cartoon','anime','ghibli','nano','banana','ai','generated','art','digital','illustration','drawing','sketch','render','cgi','synthetic','midjourney','dalle','stable','diffusion'];
-      const realLifeKeywords = ['person','human','people','man','woman','child','baby','family','portrait','selfie','photo','camera','dog','cat','animal','pet','bird','nature','wildlife','tree','flower','plant','real','authentic','live','candid'];
+      const artificialKeywords = ['cartoon', 'anime', 'ghibli', 'nano', 'banana', 'ai', 'generated', 'art', 'digital', 'illustration', 'drawing', 'sketch', 'render', 'cgi', 'synthetic', 'midjourney', 'dalle', 'stable', 'diffusion'];
+      const realLifeKeywords = ['person', 'human', 'people', 'man', 'woman', 'child', 'baby', 'family', 'portrait', 'selfie', 'photo', 'camera', 'dog', 'cat', 'animal', 'pet', 'bird', 'nature', 'wildlife', 'tree', 'flower', 'plant', 'real', 'authentic', 'live', 'candid'];
       const hasArtificialKeyword = artificialKeywords.some(keyword => fileName.toLowerCase().includes(keyword));
       const hasRealLifeKeyword = realLifeKeywords.some(keyword => fileName.toLowerCase().includes(keyword));
       let isArtificial = false;
@@ -414,11 +421,11 @@
       if (isArtificial) {
         resultDiv.className = 'analysis-result result-fake';
         resultTitle.textContent = '🎨 AI-Generated/Cartoon Content Detected';
-        resultText.textContent = `This appears to be synthetic or AI-generated with ${confidence}% confidence.`;
+        resultText.textContent = This appears to be synthetic or AI-generated with ${confidence}% confidence.;
       } else {
         resultDiv.className = 'analysis-result result-authentic';
         resultTitle.textContent = '✅ Authentic Living Content Detected';
-        resultText.textContent = `This appears authentic with ${confidence}% confidence.`;
+        resultText.textContent = This appears authentic with ${confidence}% confidence.;
       }
     }, 2000);
   }
