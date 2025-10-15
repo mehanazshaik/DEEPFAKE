@@ -367,16 +367,25 @@ function processAnalysis(fileName) {
   resultDiv.className = 'analysis-result';
   resultTitle.textContent = 'Analyzing...';
   resultText.textContent = 'Processing your file with Vision Transformers...';
+
   setTimeout(() => {
     const confidence = Math.floor(Math.random() * 15) + 85;
-    const artificialKeywords = ['cartoon', 'anime', 'ghibli', 'nano', 'banana', 'ai', 'generated', 'art', 'digital', 'illustration', 'drawing', 'sketch', 'render', 'cgi', 'synthetic', 'midjourney', 'dalle', 'stable', 'diffusion'];
-    const realLifeKeywords = ['person', 'human', 'people', 'man', 'woman', 'child', 'baby', 'family', 'portrait', 'selfie', 'photo', 'camera', 'dog', 'cat', 'animal', 'pet', 'bird', 'nature', 'wildlife', 'tree', 'flower', 'plant', 'real', 'authentic', 'live', 'candid'];
+
+    const artificialKeywords = [
+      'cartoon','anime','ghibli','nano','banana','ai','generated','art','digital',
+      'illustration','drawing','sketch','render','cgi','synthetic','midjourney','dalle',
+      'stable','diffusion'
+    ];
+
     const hasArtificialKeyword = artificialKeywords.some(keyword => fileName.toLowerCase().includes(keyword));
-    const hasRealLifeKeyword = realLifeKeywords.some(keyword => fileName.toLowerCase().includes(keyword));
+
     let isArtificial = false;
-    if (hasRealLifeKeyword) isArtificial = false;
-    else if (hasArtificialKeyword) isArtificial = true;
-    else isArtificial = Math.random() < 0.3;
+    if (hasArtificialKeyword) {
+      isArtificial = true; // ❌ Prioritize artificial first
+    } else {
+      isArtificial = false; // Everything else is considered real
+    }
+
     if (isArtificial) {
       resultDiv.className = 'analysis-result result-fake';
       resultTitle.textContent = '🎨 AI-Generated/Cartoon Content Detected';
@@ -386,8 +395,10 @@ function processAnalysis(fileName) {
       resultTitle.textContent = '✅ Authentic Living Content Detected';
       resultText.textContent = `This appears authentic with ${confidence}% confidence.`;
     }
+
   }, 2000);
 }
+
 
 let videoStream;
 function openCamera() {
